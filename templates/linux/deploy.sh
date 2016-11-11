@@ -15,11 +15,13 @@ gyp_rebuild_inside_node_modules () {
       if [ $isBinaryModule != "yes" ]; then
         if [ -d ./node_modules ]; then
           cd ./node_modules
-          for module in ./*; do
-            cd $module
-            check_for_binary_modules
-            cd ..
-          done
+          if [ "$(ls ./ )" ]; then
+            for module in ./*; do
+              cd $module
+              check_for_binary_modules
+              cd ..
+            done
+	      fi
           cd ../
         fi
       fi
